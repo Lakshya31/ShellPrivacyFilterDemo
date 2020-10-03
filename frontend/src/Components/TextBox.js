@@ -14,7 +14,6 @@ export default class TextBox extends Component {
         var close = '</span>';
         var text = this.state.text
         if(text.length >= 10){
-            console.log("Here1")
             fetch("http://localhost:3001/analyze",{
                 method:"post",
                 headers: { 'Content-Type': 'application/json' },
@@ -22,7 +21,6 @@ export default class TextBox extends Component {
             })
             .then(resp => resp.json())
             .then(markers => {
-                console.log(markers)
                 var add = 0
                 markers.forEach((marker)=>{
                     text = [text.slice(0, marker[0]+add), open, text.slice(marker[0]+add)].join('');
@@ -30,6 +28,7 @@ export default class TextBox extends Component {
                     text = [text.slice(0, marker[1]+add), close, text.slice(marker[1]+add)].join('');
                     add = add + close.length
                 })
+                text = text.replace(/(?:\r\n|\r|\n)/g,"<br>");
                 console.log(text)
                 document.getElementById("highlighter").innerHTML = text;
             })
@@ -38,7 +37,7 @@ export default class TextBox extends Component {
             })
         }
         else{
-            document.getElementById("highlighter").innerHTML = this.state.text
+            document.getElementById("highlighter").innerHTML = ""
         }
     }
 
