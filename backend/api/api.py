@@ -16,14 +16,23 @@ def analyze():
     text = data['text']
     print(text)
 
+    if len(text) < 10:
+        return jsonify([])
+
     index1 = numpy.random.randint(0,len(text)//4)
     index2 = numpy.random.randint(len(text)//4,len(text)//2)
     index3 = numpy.random.randint(len(text)//2,len(text)//4*3)
     index4 = numpy.random.randint(len(text)//4*3,len(text))
 
     reply = [
-        [index1, index2],
-        [index3, index4]
+        {
+            "message":"Private Info",
+            "indices": [index1, index2]
+        },
+        {
+            "message":"Confidentiality Issue",
+            "indices": [index3, index4]
+        }
     ]
 
     return jsonify(reply)

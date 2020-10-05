@@ -1,57 +1,86 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+
+import InteractSwitch from './InteractSwitch';
 
 export default class TextBox extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-            text : ""
+            text: "",
+            data: [],
+            interact: false,
         }
     }
 
     sendRequest = () => {
-        var open = '<span class="highlight">';
-        var close = '</span>';
-        var text = this.state.text
-        if(text.length >= 10){
-            fetch("http://localhost:3001/analyze",{
-                method:"post",
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({text:text})
-            })
+        // var open = '';
+        // var close = '</span>';
+        fetch("http://localhost:3001/analyze", {
+            method: "post",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text: this.state.text })
+        })
             .then(resp => resp.json())
             .then(markers => {
-                var add = 0
-                markers.forEach((marker)=>{
-                    text = [text.slice(0, marker[0]+add), open, text.slice(marker[0]+add)].join('');
-                    add = add + open.length
-                    text = [text.slice(0, marker[1]+add), close, text.slice(marker[1]+add)].join('');
-                    add = add + close.length
-                })
-                text = text.replace(/(?:\r\n|\r|\n)/g,"<br>");
-                console.log(text)
-                document.getElementById("highlighter").innerHTML = text;
+                this.setState({ data: markers })
             })
             .catch(error => {
                 alert("API Bugged");
             })
-        }
-        else{
-            document.getElementById("highlighter").innerHTML = ""
-        }
     }
 
     onTextChange = (event) => {
-        // document.getElementById("highlighter").innerHTML = event.target.value
-        this.setState({text:event.target.value},this.sendRequest)
+        event.target.value = event.target.value.replace( /(<([^>]+)>)/ig, '');
+        this.setState({ text: event.target.value}, this.sendRequest)
     }
+
+    onInteractChange = () => {
+        this.setState(state => ({ interact: !state.interact }), this.ChangeMode)
+    }
+
+    ChangeMode = () => {
+        if (this.state.interact) {
+            var Node = document.getElementsByClassName("TextBox")[0];
+            var newdiv = document.createElement("div");
+            newdiv.className = "newDiv";
+            newdiv.onclick = this.onInteractChange;
+            newdiv.innerHTML = document.getElementById("highlighter").innerHTML;
+            Node.appendChild(newdiv);
+        }
+        else {
+            var Node1 = document.getElementsByClassName("TextBox")[0];
+            var newdiv1 = document.getElementsByClassName("newDiv")[0];
+            Node1.removeChild(newdiv1);
+        }
+    }
+
+    renderTextinBackground = () => {
+        var open = '<span class="highlight">';
+        var close = '';
+        var add = 0
+        var text = this.state.text;
+        this.state.data.forEach((marker) => {
+            close = '<span class="tooltiptext">'+marker.message+'</span></span>';
+            text = [text.slice(0, marker.indices[0] + add), open, text.slice(marker.indices[0] + add)].join('');
+            add = add + open.length
+            text = [text.slice(0, marker.indices[1] + add), close, text.slice(marker.indices[1] + add)].join('');
+            add = add + close.length
+        })
+        text = text.replace(/(?:\r\n|\r|\n)/g, "<br>");
+
+        return { __html: text }
+    }
+
 
     render() {
         return (
             <div className="TextBox">
-                <div id="highlighter"></div>
+                <div id="highlighter" dangerouslySetInnerHTML={this.renderTextinBackground()} />
                 <textarea type="text" id="InputBox" onChange={this.onTextChange}></textarea>
+                <InteractSwitch onInteractChange={this.onInteractChange} interact={this.state.interact} />
             </div>
         )
     }
+
 }
