@@ -46,25 +46,28 @@
 }
 
 .Lower{
-  height: 90vh;
+  height: 88vh;
   width : 100vw;
   overflow: hidden;
   flex: auto;
+  border-bottom: solid 2vh rgb(0,114,198);
 }
 
 .LeftPane{
   width: 15vw;
   background-color : rgb(0,114,198);
   height: 100%;
-  border-top: silver solid 1px;
+  border:none;
+  padding:none;
   float: left;
 }
 
 .TextBox{
-  width: 85vw;
+  width: 83vw;
   height: 100%;
   float: right;
   position: relative;
+  border-right: solid 2vw rgb(0,114,198);
 }
 
 .TextBox > * {
@@ -74,16 +77,28 @@
   height: 100%;
   width: 100%;
   margin: 0;
-  padding: 0;
 }
 
-#highlighter{
+.InteractImage {
+  position: relative;
+  top: 0;
+  right: 0;
+  height: 5vh;
+  width: 2vw;
+  margin: 0;
+  padding: 0;
+  float: right;
+}
+
+#highlighter, #highlighter:focus, #highlighter:hover{
   background-color: white;
-  color: white;
+  color:black;
   padding: 2px 2px;
   text-align: left;
   font-family: 'Times New Roman', Times, serif;
   font-size: medium;
+  border: none;
+  outline: none;
 }
 
 textarea, textarea:hover, textarea:focus{
@@ -96,12 +111,48 @@ textarea, textarea:hover, textarea:focus{
   border: none;
   padding: 2px 2px;
   text-align: left;
-  background-color: transparent
+  background-color: transparent;
+  resize: none;
 }
 
 .highlight{
-  background-color: rgb(255,0,0);
-  color: rgb(255,0,0);
+  background-color: cyan;
+  color: black;
   font-family: 'Times New Roman', Times, serif;
   font-size: medium;
+}
+
+.highlight:hover{
+  background-color: red;
+  color: black;
+}
+
+.newDiv, .newDiv:focus, .newDiv:hover{
+  background-color: transparent;
+  color:transparent;
+  padding: 2px 2px;
+  text-align: left;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: medium;
+  border: none;
+  outline: none;
+}
+
+.highlight .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: darkgrey;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  font-size: small;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.highlight:hover .tooltiptext {
+  visibility: visible;
 }
