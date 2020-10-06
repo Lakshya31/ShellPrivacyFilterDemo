@@ -60,7 +60,6 @@
   right: 0;
   bottom: 0;
   left: 0;
-  /* z-index: -1; */
 }
 
 .MainApp{
@@ -71,6 +70,8 @@
   background-color: white;
   width : 50vw;
   height : 80vh;
+  min-width: 515px;
+  min-height: 540px;
   margin : auto;
   border-radius: 10px;
   box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.4);
@@ -118,6 +119,7 @@
 .InputBoxes{
   height: 100%;
   padding: 0% 5%;
+  padding-top: 10px;
   border-left: solid rgb(0, 114, 198) 10px;
   border-right: solid rgb(0, 114, 198) 10px;
   display: flex;
@@ -138,7 +140,8 @@
   border-radius: 2px;
   height: 100%;
   width: 100%;
-  margin: 10px
+  margin: 10px;
+  margin-left: 20px;
 }
 
 .MyTextBox > * {
@@ -156,8 +159,8 @@
   position: relative;
   top: 0;
   right: 0;
-  height: 7.5vh;
-  width: 3vw;
+  height: 50px;
+  width: 50px;
   margin: 2px;
   padding: 0;
   float: right;
@@ -225,4 +228,35 @@ textarea, textarea:hover, textarea:focus{
 
 .highlight:hover .tooltiptext {
   visibility: visible;
+}
+
+.BottomRow{
+  display: flex;
+  flex-direction: row;
+  padding: 0% 5%;
+  border-left: solid rgb(0, 114, 198) 10px;
+  border-right: solid rgb(0, 114, 198) 10px;
+  border-bottom: solid rgb(0, 114, 198) 10px;
+  border-radius: 0px 0px 10px 10px;
+}
+
+.roundit{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(0, 114, 198);
+  color: white;
+  font-weight: bold;
+  font-size: medium;
+  border-radius: 20px;
+  padding: auto auto;
+  width: 80px;
+  height: 40px;
+  margin : 5px 10px 10px 20px;
+}
+
+.AttachmentIcon{
+  height: 40px;
+  width: 40px;
+  margin: 5px 10px;
 }

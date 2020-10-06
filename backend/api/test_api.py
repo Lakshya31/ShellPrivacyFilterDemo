@@ -1,10 +1,19 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, abort
 from flask_cors import CORS
+from werkzeug.utils import secure_filename
 import time
 import numpy
 
+UPLOAD_FOLDER = "./attachments"
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
+
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 CORS(app)
+
+#Extension_Check
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route("/", methods=['GET'])
 def test():
@@ -37,6 +46,15 @@ def analyze_text():
 
     return jsonify(reply)
 
-# @app.route("/analyzeattachment", methods=['POST'])
-# def analyze_attachment():
-
+@app.route("/analyzeattachment", methods=['POST'])
+def analyze_attachment():
+    if 'file' not in request.files:
+            abort(400, description="Resource not found")
+    file = request.files['file']
+    # if user does not select file, browser also submit an empty part without filename
+    if file.filename == '':
+        abort(400, description="Resource not found")
+    if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+        file.filename = filename
+        return jsonify(file)

@@ -3,6 +3,8 @@ from flask_cors import CORS
 import time
 import numpy
 
+
+#Globals
 app = Flask(__name__)
 CORS(app)
 
@@ -14,8 +16,11 @@ def test():
 def analyze_text():
     data = request.get_json()
     text = data['text']
+    subject = data['subject']
 
-    #Your Input is the variable "text"
+    print(subject, text)
+
+    #Your Input are the variables "text" and "subject"
 
     Output = None  #Call Model Here
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 //Importing Components
 import MyTextBox from './MyTextBox';
+import AttachFiles from './AttachFiles';
 
 //Importing Images4
 import Mail from '../Images/Mail.png';
@@ -10,6 +11,18 @@ import Minimize from '../Images/Minimize.png';
 import Close from '../Images/Close.png';
 
 export default class MainApp extends Component {
+
+    constructor(props){
+        super(props);
+        this.state = {
+            subject : ""
+        }
+    }
+
+    subjectChange = (event) => {
+        this.setState({subject: event.target.value})
+    }
+
     render() {
         return (
             <div className="MainApp">
@@ -36,14 +49,12 @@ export default class MainApp extends Component {
                     <div className="form-group row">
                         <label for="SubjectLine" className="col-sm-2 col-form-label">Subject</label>
                         <div className="col-sm-10">
-                        <input type="text" className="form-control InputBox" id="SubjectLine"/>
+                        <input type="text" className="form-control InputBox" id="SubjectLine" onChange={this.subjectChange}/>
                         </div>
                     </div>
-                    <MyTextBox/>
+                    <MyTextBox subject={this.state.subject}/>
                 </div>
-                <div className="BottomRow">
-                    {/* <AttachFile/> */}
-                </div>
+                <AttachFiles/>
             </div>
         )
     }
