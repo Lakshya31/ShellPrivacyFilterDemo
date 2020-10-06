@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import InteractSwitch from './InteractSwitch';
 
-export default class TextBox extends Component {
+export default class MyTextBox extends Component {
 
     constructor(props) {
         super(props);
@@ -14,8 +14,6 @@ export default class TextBox extends Component {
     }
 
     sendRequest = () => {
-        // var open = '';
-        // var close = '</span>';
         fetch("http://localhost:3001/analyze", {
             method: "post",
             headers: { 'Content-Type': 'application/json' },
@@ -26,7 +24,7 @@ export default class TextBox extends Component {
                 this.setState({ data: markers })
             })
             .catch(error => {
-                alert("API Bugged");
+                console.log("API Bugged");
             })
     }
 
@@ -41,7 +39,7 @@ export default class TextBox extends Component {
 
     ChangeMode = () => {
         if (this.state.interact) {
-            var Node = document.getElementsByClassName("TextBox")[0];
+            var Node = document.getElementsByClassName("MyTextBox")[0];
             var newdiv = document.createElement("div");
             newdiv.className = "newDiv";
             newdiv.onclick = this.onInteractChange;
@@ -49,7 +47,7 @@ export default class TextBox extends Component {
             Node.appendChild(newdiv);
         }
         else {
-            var Node1 = document.getElementsByClassName("TextBox")[0];
+            var Node1 = document.getElementsByClassName("MyTextBox")[0];
             var newdiv1 = document.getElementsByClassName("newDiv")[0];
             Node1.removeChild(newdiv1);
         }
@@ -75,9 +73,9 @@ export default class TextBox extends Component {
 
     render() {
         return (
-            <div className="TextBox">
+            <div className="MyTextBox">
                 <div id="highlighter" dangerouslySetInnerHTML={this.renderTextinBackground()} />
-                <textarea type="text" id="InputBox" onChange={this.onTextChange}></textarea>
+                <textarea type="text" onChange={this.onTextChange}></textarea>
                 <InteractSwitch onInteractChange={this.onInteractChange} interact={this.state.interact} />
             </div>
         )

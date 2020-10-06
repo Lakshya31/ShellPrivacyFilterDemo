@@ -14,14 +14,15 @@ def test():
 def analyze_text():
     data = request.get_json()
     text = data['text']
+    print(text)
 
-    #Your Input is the variable "text"
+    if len(text) < 10:
+        return jsonify([])
 
-    Output = None  #Call Model Here
-
-    """
-    Format Output Like This:
-    (List of Dictionaries, each of which have a message key for a text value and an indices key for a list of 2 indices)
+    index1 = numpy.random.randint(0,len(text)//4)
+    index2 = numpy.random.randint(len(text)//4,len(text)//2)
+    index3 = numpy.random.randint(len(text)//2,len(text)//4*3)
+    index4 = numpy.random.randint(len(text)//4*3,len(text))
 
     reply = [
         {
@@ -33,9 +34,8 @@ def analyze_text():
             "indices": [index3, index4]
         }
     ]
-    """
 
-    return jsonify(Output)
+    return jsonify(reply)
 
 # @app.route("/analyzeattachment", methods=['POST'])
 # def analyze_attachment():

@@ -39,53 +39,126 @@
 
 /**MyStuff**/
 
-.UpperBlue{
-  width : 100vw;
-  height : 10vh;
-  background-color : rgb(0,114,198)
+* {
+  box-sizing: border-box;
 }
 
-.Lower{
-  height: 88vh;
-  width : 100vw;
+.App{
+  height: 100vh;
+  width: 100vw;
   overflow: hidden;
-  flex: auto;
-  border-bottom: solid 2vh rgb(0,114,198);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.LeftPane{
-  width: 15vw;
-  background-color : rgb(0,114,198);
-  height: 100%;
-  border:none;
-  padding:none;
+.Particles{
+  position: absolute;
+  background-image: linear-gradient( 109.8deg,  rgba(62,5,116,1) -5.2%, rgba(41,14,151,1) -5.2%, rgba(216,68,148,1) 103.3% );
+  background-size: cover;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  /* z-index: -1; */
+}
+
+.MainApp{
+  position: absolute;
+  display: flex;
+  flex-flow: column;
+  position: absolute;
+  background-color: white;
+  width : 50vw;
+  height : 80vh;
+  margin : auto;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.4);
+}
+
+.TopBar{
+  background-color: rgb(0, 114, 198);
+  text-align: left;
+  border-top: rgb(0, 114, 198) solid 3px;
+  border-left: rgb(0, 114, 198) solid 2px;
+  border-right: rgb(0, 114, 198) solid 2px;
+  border-radius: 10px 10px 0px 0px;
+  padding: 10px 10px 10px 10px;
+}
+
+.LeftItems{
   float: left;
+  display: flex;
 }
 
-.TextBox{
-  width: 83vw;
-  height: 100%;
+.MailIcon{
+  height: 15px;
+  width: 25px;
+  margin: 4px 5px auto 5px;
+}
+
+.BoxTitle{
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: left;
+  margin: auto 0px;
+}
+
+.WindowIcons{
   float: right;
-  position: relative;
-  border-right: solid 2vw rgb(0,114,198);
 }
 
-.TextBox > * {
+.WindowIcon{
+  height: 20px;
+  width: 20px;
+  margin: auto 4px 5px 4px;
+}
+
+.InputBoxes{
+  height: 100%;
+  padding: 0% 5%;
+  border-left: solid rgb(0, 114, 198) 10px;
+  border-right: solid rgb(0, 114, 198) 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.InputBox, .InputBox:hover, .InputBox:focus, .InputBox:active{
+  outline:none;
+  border:none;
+  box-shadow: none;
+  border-radius: 0px;
+  border-bottom: 1px solid black;
+}
+
+.MyTextBox{
+  position: relative;
+  border: 1px solid grey;
+  border-radius: 2px;
+  height: 100%;
+  width: 100%;
+  margin: 10px
+}
+
+.MyTextBox > * {
   position: absolute;
   top: 0;
   left: 0;
+  bottom: 0;
+  right: 0;
+  margin: 0;
   height: 100%;
   width: 100%;
-  margin: 0;
 }
 
 .InteractImage {
   position: relative;
   top: 0;
   right: 0;
-  height: 5vh;
-  width: 2vw;
-  margin: 0;
+  height: 7.5vh;
+  width: 3vw;
+  margin: 2px;
   padding: 0;
   float: right;
 }
@@ -93,11 +166,11 @@
 #highlighter, #highlighter:focus, #highlighter:hover{
   background-color: white;
   color:black;
-  padding: 2px 2px;
   text-align: left;
   font-family: 'Times New Roman', Times, serif;
   font-size: medium;
   border: none;
+  padding: 2px;
   outline: none;
 }
 
@@ -106,10 +179,7 @@ textarea, textarea:hover, textarea:focus{
   font-size: medium;
   font-family: 'Times New Roman', Times, serif;
   outline: none;
-  width: 100%;
-  height: 100%;
   border: none;
-  padding: 2px 2px;
   text-align: left;
   background-color: transparent;
   resize: none;
@@ -130,11 +200,11 @@ textarea, textarea:hover, textarea:focus{
 .newDiv, .newDiv:focus, .newDiv:hover{
   background-color: transparent;
   color:transparent;
-  padding: 2px 2px;
   text-align: left;
   font-family: 'Times New Roman', Times, serif;
   font-size: medium;
   border: none;
+  padding: 2px;
   outline: none;
 }
 
