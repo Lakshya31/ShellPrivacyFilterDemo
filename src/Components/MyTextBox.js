@@ -14,10 +14,10 @@ export default class MyTextBox extends Component {
     }
 
     sendRequest = () => {
-        fetch("http://localhost:3001/analyze", {
+        fetch("http://localhost:3001/analyzetext", {
             method: "post",
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ text: this.state.text })
+            body: JSON.stringify({ text: this.state.text, subject: this.props.subject })
         })
             .then(resp => resp.json())
             .then(markers => {
