@@ -54,9 +54,9 @@ class EmailFilter:
         self.de.extract_text(attachment_docx, "text")
         with open(os.path.join(os.path.expanduser("~"), "ShellPrivacyFilterDemo", "data", attachment_docx.split(".")[0] + "_text.txt"), "r") as file:
             text = file.read()
-            personal, confidential = self.ner.test(text)
+            ner_result = self.ner.test(text)
             
-            if len(personal) > 0 or len(confidential) > 0:
+            if len(ner_result) > 0:
                 return True
         
         return False
@@ -78,7 +78,7 @@ class EmailFilter:
         unsafe_image = self.attachment_image(attachment_docx)
         
         if unsafe_text == True or unsafe_image == True:
-            return "Issue"
+            return "issue"
         
-        return "No Issue"
+        return "no issue"
 
