@@ -42,8 +42,8 @@ class DocumentExtract:
         with zipfile.ZipFile(input_file) as doc:
             for info in doc.infolist():
                 if info.filename.endswith((".png", ".jpeg", ".gif")):
-                    doc.extract(info.filename, output_img)
-                    shutil.copy(os.path.join(output_img, info.filename), 
+                    doc.extract(info.filename, os.path.join(os.path.expanduser("~"), "ShellPrivacyFilterDemo", "data", output_img))
+                    shutil.copy(os.path.join(os.path.expanduser("~"), "ShellPrivacyFilterDemo", "data", output_img, info.filename), 
                                 os.path.join(os.path.expanduser("~"), "ShellPrivacyFilterDemo", "data", output_img, 
                                              name + "_" + 
                                              os.path.basename(os.path.normpath(info.filename))))
