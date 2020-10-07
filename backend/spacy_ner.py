@@ -102,9 +102,9 @@ class NER:
     
         return nlp
     
-    def save_model(self, name, data, iterations):
+    def save_model(self, path, data, iterations):
         self.ner_model = self.train_spacy(data, iterations)
-        self.ner_model.to_disk(name)
+        self.ner_model.to_disk(path)
         
     def test(self, text):
         doc = self.ner_model(text)
@@ -120,47 +120,13 @@ class NER:
         
         return personal, confidential
             
-    def load(self, name):
+    def load(self, path):
         self.ner_model = spacy.blank('en')
         if 'ner' not in self.ner_model.pipe_names:
             ner = self.ner_model.create_pipe('ner')
-            self.ner_mdel.add_pipe(ner, last = True)
-        self.ner_model.from_disk("ner_model")
+            self.ner_model.add_pipe(ner, last = True)
+        self.ner_model.from_disk(path)
 
 
-# Defining input parameters
 
-# In[ ]:
-
-
-ner = NER()
-input_file = "sample4.json1"
-data = ner.jsonl_to_spacy(input_file)
-train_data = ner.clean_entity_spans(data)
-
-
-# Defining training parameters
-
-# In[ ]:
-
-
-model_name = "ner_model"
-iterations = 50
-
-
-# Saving the model
-
-# In[ ]:
-
-
-ner.save_model(model_name, train_data, iterations)
-
-
-# Testing model against custom input
-
-# In[ ]:
-
-
-line = input("Enter test text: ")
-personal, confidential = ner.test(line)
 
