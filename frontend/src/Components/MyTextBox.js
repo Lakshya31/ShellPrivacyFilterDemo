@@ -54,11 +54,19 @@ export default class MyTextBox extends Component {
     }
 
     renderTextinBackground = () => {
-        var open = '<span class="highlight">';
+        var open = '';
         var close = '';
-        var add = 0
+        var add = 0;
         var text = this.state.text;
         this.state.data.forEach((marker) => {
+            if(marker.message === "Violation of Privacy Policy"){
+                open = '<span class="highlight highlight1">';
+                close = '<span class="tooltiptext">'+marker.message+'</span></span>';
+            }
+            if(marker.message === "Breach of Confidentiality"){
+                open = '<span class="highlight highlight2">';
+                close = '<span class="tooltiptext">'+marker.message+'</span></span>';
+            }
             close = '<span class="tooltiptext">'+marker.message+'</span></span>';
             text = [text.slice(0, marker.indices[0] + add), open, text.slice(marker.indices[0] + add)].join('');
             add = add + open.length

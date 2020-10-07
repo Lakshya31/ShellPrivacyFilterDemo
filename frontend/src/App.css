@@ -70,7 +70,7 @@
   background-color: white;
   width : 50vw;
   height : 80vh;
-  min-width: 515px;
+  min-width: 540px;
   min-height: 540px;
   margin : auto;
   border-radius: 10px;
@@ -132,6 +132,9 @@
   box-shadow: none;
   border-radius: 0px;
   border-bottom: 1px solid black;
+  padding: 6px 12px;
+  font-weight: 500;
+  color: black;
 }
 
 .MyTextBox{
@@ -159,8 +162,8 @@
   position: relative;
   top: 0;
   right: 0;
-  height: 50px;
-  width: 50px;
+  height: 40px;
+  width: 40px;
   margin: 2px;
   padding: 0;
   float: right;
@@ -170,8 +173,9 @@
   background-color: white;
   color:black;
   text-align: left;
-  font-family: 'Times New Roman', Times, serif;
-  font-size: medium;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: lighter;
+  font-size: 16px;
   border: none;
   padding: 2px;
   outline: none;
@@ -179,8 +183,9 @@
 
 textarea, textarea:hover, textarea:focus{
   color: black;
-  font-size: medium;
-  font-family: 'Times New Roman', Times, serif;
+  font-size: 16px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: lighter;
   outline: none;
   border: none;
   text-align: left;
@@ -189,39 +194,40 @@ textarea, textarea:hover, textarea:focus{
 }
 
 .highlight{
-  background-color: cyan;
-  color: black;
-  font-family: 'Times New Roman', Times, serif;
-  font-size: medium;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: lighter;
+  font-size: 16px;
 }
 
-.highlight:hover{
-  background-color: red;
-  color: black;
+.highlight1{
+  background-color: rgb(255,165,0);
+}
+
+.highlight2{
+  background-color: rgb(255,100,100);
 }
 
 .newDiv, .newDiv:focus, .newDiv:hover{
   background-color: transparent;
-  color:transparent;
+  color:black;
   text-align: left;
-  font-family: 'Times New Roman', Times, serif;
-  font-size: medium;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: lighter;
+  font-size: 16px;
   border: none;
   padding: 2px;
   outline: none;
 }
 
-.highlight .tooltiptext {
+/* .highlight .tooltiptext {
   visibility: hidden;
   width: 120px;
-  background-color: darkgrey;
-  color: #fff;
+  background-color: rgb(255,100,100);
+  color: black;
   text-align: center;
   border-radius: 6px;
   padding: 5px;
   font-size: small;
-
-  /* Position the tooltip */
   position: absolute;
   z-index: 1;
 }
@@ -230,9 +236,81 @@ textarea, textarea:hover, textarea:focus{
   visibility: visible;
 }
 
+.highlight .tooltiptext::after {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent rgb(255,100,100) transparent transparent;
+} */
+
+.highlight1 .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: rgb(255,165,0);
+  color: black;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 6px;
+  border: 1px solid black;
+  padding: 5px;
+  font-size: small;
+  position: absolute;
+  z-index: 1;
+}
+
+.highlight1:hover .tooltiptext {
+  visibility: visible;
+}
+
+.highlight1 .tooltiptext::after {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent black transparent transparent;
+}
+
+.highlight2 .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: rgb(255,100,100);
+  color: black;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 6px;
+  border: 1px solid black;
+  padding: 5px;
+  font-size: small;
+  position: absolute;
+  z-index: 1;
+}
+
+.highlight2:hover .tooltiptext {
+  visibility: visible;
+}
+
+.highlight2 .tooltiptext::after {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent black transparent transparent;
+}
+
 .BottomRow{
   display: flex;
   flex-direction: row;
+  align-items: center;
   padding: 0% 5%;
   border-left: solid rgb(0, 114, 198) 10px;
   border-right: solid rgb(0, 114, 198) 10px;
@@ -256,7 +334,62 @@ textarea, textarea:hover, textarea:focus{
 }
 
 .AttachmentIcon{
-  height: 40px;
-  width: 40px;
-  margin: 5px 10px;
+  height: 38px;
+  width: 38px;
+  margin: 10px 10px 10px 10px;
+}
+
+.AttachmentsSection{
+  padding-left: 10px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  /* max-width: 250px; */
+  white-space:nowrap;
+}
+
+.AttachmentCard{
+  display: flex;
+  align-items: center;
+  border: 1px solid grey;
+  border-radius: 5px;
+  background-color: rgb(218, 217, 220);
+  margin: auto 5px;
+}
+
+.AttachmentCardIssue{
+  display: flex;
+  align-items: center;
+  border: 1px solid grey;
+  border-radius: 5px;
+  background-color: rgb(255,100,100);
+  margin: auto 5px;
+}
+
+.DocxIcon{
+  float: left;
+  height: 35px;
+  width : 35px;
+  padding: 5px;
+}
+
+.AttachmentName{
+  float: left;
+  color: blue;
+  align-items: center;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  font-weight: bolder;
+  vertical-align: middle;
+}
+
+.DelIcon{
+  float: right;
+  right: 0;
+  height: 25px;
+  width : 25px;
+  padding: 5px;
+}
+
+.DelIcon:hover{
+  cursor: pointer;
 }

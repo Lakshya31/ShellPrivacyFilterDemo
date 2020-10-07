@@ -3,9 +3,10 @@ from flask_cors import CORS
 from werkzeug.utils import secure_filename
 import time
 import numpy
+#import os
 
 UPLOAD_FOLDER = "./attachments"
-ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
+ALLOWED_EXTENSIONS = {'docx'}
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -15,9 +16,11 @@ CORS(app)
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+
 @app.route("/", methods=['GET'])
 def test():
     return "Hello World!"
+
 
 @app.route("/analyzetext", methods=['POST'])
 def analyze_text():
@@ -35,26 +38,35 @@ def analyze_text():
 
     reply = [
         {
-            "message":"Private Info",
+            "message":"Violation of Privacy Policy",
             "indices": [index1, index2]
         },
         {
-            "message":"Confidentiality Issue",
+            "message":"Breach of Confidentiality",
             "indices": [index3, index4]
         }
     ]
 
     return jsonify(reply)
 
+
 @app.route("/analyzeattachment", methods=['POST'])
 def analyze_attachment():
+
     if 'file' not in request.files:
-            abort(400, description="Resource not found")
-    file = request.files['file']
-    # if user does not select file, browser also submit an empty part without filename
-    if file.filename == '':
+        print("No File")
         abort(400, description="Resource not found")
+
+    file = request.files['file']
+    if file.filename == '':
+        print("No File Name")
+        abort(400, description="Resource not found")
+
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
         file.filename = filename
-        return jsonify(file)
+        # file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        data = file.read()
+        return jsonify("issue")
+
+    abort(400, description="Resource not found")
