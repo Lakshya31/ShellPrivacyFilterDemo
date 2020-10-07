@@ -69,15 +69,15 @@ class ImageData:
         self.y = np.array(self.y)
         
     def save_pickle(self):
-        pickle_out = open(os.path.join(os.path.expanduser("~"), "data", "Image Dataset", "features.pickle"), "wb")
+        pickle_out = open(os.path.join(os.path.expanduser("~"), "ShellPrivacyFilterDemo", "data", "Image Dataset", "features.pickle"), "wb")
         pickle.dump(self.X, pickle_out)
         pickle_out.close()
 
-        pickle_out = open(os.path.join(os.path.expanduser("~"), "data", "Image Dataset", "labels.pickle"), "wb")
+        pickle_out = open(os.path.join(os.path.expanduser("~"), "ShellPrivacyFilterDemo", "data", "Image Dataset", "labels.pickle"), "wb")
         pickle.dump(self.y, pickle_out)
         pickle_out.close()
         
     def load_pickle(self):
-        pickle_in = open(os.path.join(os.path.expanduser("~"), "data", "Image Dataset", "features.pickle"), "rb")
+        pickle_in = open(os.path.join(os.path.expanduser("~"), "ShellPrivacyFilterDemo", "data", "Image Dataset", "features.pickle"), "rb")
         self.X = pickle.load(pickle_in)
 
