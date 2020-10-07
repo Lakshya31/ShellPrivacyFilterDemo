@@ -52,7 +52,7 @@ class EmailFilter:
     
     def attachment_ner(self, attachment_docx):
         self.de.extract_text(attachment_docx, "text")
-        with open(os.path.join(os.path.extenduser("~"), "ShellPrivacyFilterDemo", "data", attachment_docx.split(".")[0] + "_text.txt"), "r") as file:
+        with open(os.path.join(os.path.expanduser("~"), "ShellPrivacyFilterDemo", "data", attachment_docx.split(".")[0] + "_text.txt"), "r") as file:
             text = file.read()
             personal, confidential = self.ner.test(text)
             
@@ -65,7 +65,7 @@ class EmailFilter:
         self.de.extract_images(attachment_docx, "images")
         predictions = []
         for image in self.de.images:
-            predictions.append(self.keras_model.test(os.path.join(os.path.extenduser("~"), "ShellPrivacyFilterDemo", "data", "images", image)))
+            predictions.append(self.keras_model.test(os.path.join(os.path.expanduser("~"), "ShellPrivacyFilterDemo", "data", "images", image)))
         
         if "Confidential" in predictions:
             return True
