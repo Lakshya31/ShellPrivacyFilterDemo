@@ -41,7 +41,7 @@ class EmailFilter:
          
     def load_ner(self):
         self.ner = NER()
-        self.ner.load(os.path.join(os.path.expanduser("~"),"backend", "models", "ner_model"))
+        self.ner.load(os.path.join(os.path.expanduser("~"),"ShellPrivacyFilterDemo","backend", "models", "ner_model"))
         
     def load_image_model(self):
         self.keras_model = KerasModel()
