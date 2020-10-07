@@ -108,17 +108,22 @@ class NER:
         
     def test(self, text):
         doc = self.ner_model(text)
-        personal = []
-        confidential = []
+        ner_result = []
         
         for ent in doc.ents:
             print(ent.text, ent.label_, (ent.start_char, ent.end_char))
             if ent.label_ == "Confidential":
-                confidential.append((ent.start_char, ent.end_char))
+                dict_conf = {}
+                dict_conf["message"] = "Breach of Confidentiality"
+                dict_conf["indices"] = [ent.start_char, ent.end_char]
+                ner_result.append(dict_conf)
             elif ent.label_ == "Personal":
-                personal.append((ent.start_char, ent.end_char))
+                dict_per = {}
+                dict_per["message"] = "Violation of Privacy Policy"
+                dict_per["indices"] = [ent.start_char, ent.end_char]
+                ner_result.append(dict_per)
         
-        return personal, confidential
+        return ner_result
             
     def load(self, path):
         self.ner_model = spacy.blank('en')
