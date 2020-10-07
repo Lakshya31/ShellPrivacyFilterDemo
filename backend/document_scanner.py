@@ -33,7 +33,7 @@ class DocumentExtract:
     def extract_text(self, input_file, output_text):
         doc = docx.Document(input_file)
         name = os.path.basename(os.path.normpath(input_file)).split(".")[0]
-        with open(name + "_" + output_text + ".txt", "w" ,encoding = "utf-8") as file:
+        with open(os.path.join(os.path.extenduser("~"), "ShellPrivacyFilterDemo", "data", name + "_" + output_text + ".txt"), "w", encoding = "utf-8") as file:
             for para in doc.paragraphs:
                 file.write(para.text + u"\n")
     
@@ -44,7 +44,7 @@ class DocumentExtract:
                 if info.filename.endswith((".png", ".jpeg", ".gif")):
                     doc.extract(info.filename, output_img)
                     shutil.copy(os.path.join(output_img, info.filename), 
-                                os.path.join(output_img, 
+                                os.path.join(os.path.extenduser("~"), "ShellPrivacyFilterDemo", "data", output_img, 
                                              name + "_" + 
                                              os.path.basename(os.path.normpath(info.filename))))
                     self.images.append(name + "_" + 
