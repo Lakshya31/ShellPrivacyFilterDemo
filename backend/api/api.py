@@ -3,12 +3,21 @@ from flask_cors import CORS
 from werkzeug.utils import secure_filename
 import time
 import numpy
-#import os
+import os
+
+#Code to import EmailFilter class
+import sys
+module_path = os.path.join(os.path.expanduser("~"), "ShellPrivacyFilterDemo", "backend")
+sys.path.append(module_path)
+from hsse_filter import EmailFilter
 
 
 #Globals
 UPLOAD_FOLDER = "./attachments"
 ALLOWED_EXTENSIONS = {'docx'}
+
+#Model Object
+filter_model = EmailFilter()
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -34,7 +43,7 @@ def analyze_text():
 
     #Your Input are the variables "text" and "subject"
 
-    Output = None  #Call Model Here
+    Output = filter_model.email_ner(subject + "\n" + text) #Call Model Here
 
     """
     Format Output Like This:
@@ -70,8 +79,9 @@ def analyze_attachment():
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
         file.filename = filename
-        # file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))    #Enable this to save in attachments folder
-        data = file.read()          #This is the data you need to process my friend
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))    #Enable this to save in attachments folder
+        safety_flag = filter_model.attachment_scan(os.path.join(app.config['UPLOAD_FOLDER'], filename)) #This is the string you'll get ("issue" or "no issue")
+        #data = file.read()          #This is the data you need to process my friend
         return jsonify("Issue")     #Send Better Outputs
 
     abort(400, description="Resource not found")
