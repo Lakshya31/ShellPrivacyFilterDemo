@@ -78,7 +78,7 @@ class EmailFilter:
         unsafe_image = self.attachment_image(attachment_docx)
         
         if unsafe_text == True or unsafe_image == True:
-            return "Issues"
+            return "Issue"
         
-        return "No Issues"
+        return "No Issue"
 
