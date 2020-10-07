@@ -111,7 +111,6 @@ class NER:
         ner_result = []
         
         for ent in doc.ents:
-            print(ent.text, ent.label_, (ent.start_char, ent.end_char))
             if ent.label_ == "Confidential":
                 dict_conf = {}
                 dict_conf["message"] = "Breach of Confidentiality"
