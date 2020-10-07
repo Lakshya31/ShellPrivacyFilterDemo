@@ -7,7 +7,10 @@
 
 # Author: Shreyash Gupta (Chrono-Logical)
 
-# In[ ]:
+# Requirements
+# 1. cv2 - install using pip install opencv-python
+
+# In[1]:
 
 
 import numpy as np
@@ -18,7 +21,14 @@ import random
 import pickle
 
 
-# In[ ]:
+# Class to generate image-label data with following functions
+# 1. find_images - to read images into an array
+# 2. generate_training_data - to create a list of training data
+# 3. features_labels - to extract features and labels from data
+# 4. save_pickle - to save data in pickle format
+# 5. load_pickle - to load data from pickle file
+
+# In[2]:
 
 
 class ImageData:
@@ -30,7 +40,7 @@ class ImageData:
     def find_images(self):
         for category in self.categories:
             img_path = os.path.join(self.data_path, category)
-            for image in in os.listdir(img_path):
+            for image in os.listdir(img_path):
                 img_array = cv2.imread(os.path.join(img_path, image), cv2.IMREAD_GRAYSCALE) 
             
     def generate_training_data(self):
@@ -46,7 +56,7 @@ class ImageData:
                 except Exception:
                     pass
         
-        random.shuffle(self.training.data)
+        random.shuffle(self.training_data)
                 
     def features_labels(self):
         self.X = []
@@ -56,61 +66,18 @@ class ImageData:
             self.y.append(label)
             
         self.X = np.array(self.X).reshape(-1, self.image_size, self.image_size, 1)
+        self.y = np.array(self.y)
         
     def save_pickle(self):
-        pickle_out = open("features.pickle", "wb")
+        pickle_out = open(os.path.join(os.path.expanduser(), "data", "Image Dataset", "features.pickle"), "wb")
         pickle.dump(self.X, pickle_out)
         pickle_out.close()
 
-        pickle_out = open("labels.pickle", "wb")
+        pickle_out = open(os.path.join(os.path.expanduser(), "data", "Image Dataset", "labels.pickle"), "wb")
         pickle.dump(self.y, pickle_out)
         pickle_out.close()
         
     def load_pickle(self):
-        pickle_in = open("features.pickle", "rb")
+        pickle_in = open(os.path.join(os.path.expanduser(), "data", "Image Dataset", "features.pickle"), "rb")
         self.X = pickle.load(pickle_in)
-
-
-# In[ ]:
-
-
-categories = ["Confidential", "Safe"]
-data_path = "data"
-image_size = 50
-
-
-# In[ ]:
-
-
-img = ImageData(categories, data_path, image_size)
-
-
-# In[ ]:
-
-
-img.find_images()
-
-
-# In[ ]:
-
-
-img.generate_training_data()
-
-
-# In[ ]:
-
-
-img.features_labels()
-
-
-# In[ ]:
-
-
-img.save_pickle()
-
-
-# In[ ]:
-
-
-#Add augmentation
 
