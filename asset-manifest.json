@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/ShellPrivacyFilterDemo/static/css/main.b3a285a2.chunk.css",
-    "main.js": "/ShellPrivacyFilterDemo/static/js/main.c8994ed1.chunk.js",
-    "main.js.map": "/ShellPrivacyFilterDemo/static/js/main.c8994ed1.chunk.js.map",
+    "main.css": "/ShellPrivacyFilterDemo/static/css/main.36f06854.chunk.css",
+    "main.js": "/ShellPrivacyFilterDemo/static/js/main.07a37a0f.chunk.js",
+    "main.js.map": "/ShellPrivacyFilterDemo/static/js/main.07a37a0f.chunk.js.map",
     "runtime-main.js": "/ShellPrivacyFilterDemo/static/js/runtime-main.74f01554.js",
     "runtime-main.js.map": "/ShellPrivacyFilterDemo/static/js/runtime-main.74f01554.js.map",
     "static/css/2.d9ad5f5c.chunk.css": "/ShellPrivacyFilterDemo/static/css/2.d9ad5f5c.chunk.css",
     "static/js/2.da95e9a0.chunk.js": "/ShellPrivacyFilterDemo/static/js/2.da95e9a0.chunk.js",
     "static/js/2.da95e9a0.chunk.js.map": "/ShellPrivacyFilterDemo/static/js/2.da95e9a0.chunk.js.map",
     "index.html": "/ShellPrivacyFilterDemo/index.html",
-    "precache-manifest.cfea7cec666d4a97b00bac350a24b49f.js": "/ShellPrivacyFilterDemo/precache-manifest.cfea7cec666d4a97b00bac350a24b49f.js",
+    "precache-manifest.5020691ef810f998e3caf5c4caad7bcb.js": "/ShellPrivacyFilterDemo/precache-manifest.5020691ef810f998e3caf5c4caad7bcb.js",
     "service-worker.js": "/ShellPrivacyFilterDemo/service-worker.js",
     "static/css/2.d9ad5f5c.chunk.css.map": "/ShellPrivacyFilterDemo/static/css/2.d9ad5f5c.chunk.css.map",
-    "static/css/main.b3a285a2.chunk.css.map": "/ShellPrivacyFilterDemo/static/css/main.b3a285a2.chunk.css.map",
+    "static/css/main.36f06854.chunk.css.map": "/ShellPrivacyFilterDemo/static/css/main.36f06854.chunk.css.map",
     "static/js/2.da95e9a0.chunk.js.LICENSE.txt": "/ShellPrivacyFilterDemo/static/js/2.da95e9a0.chunk.js.LICENSE.txt",
     "static/media/Close.png": "/ShellPrivacyFilterDemo/static/media/Close.7e131baf.png",
     "static/media/Mail.png": "/ShellPrivacyFilterDemo/static/media/Mail.b9d21242.png",
     "static/media/Maximize.png": "/ShellPrivacyFilterDemo/static/media/Maximize.abeb1639.png",
     "static/media/Minimize.png": "/ShellPrivacyFilterDemo/static/media/Minimize.73a939d3.png",
-    "static/media/attach.png": "/ShellPrivacyFilterDemo/static/media/attach.1b7062a0.png",
+    "static/media/attach.png": "/ShellPrivacyFilterDemo/static/media/attach.57a27915.png",
     "static/media/off.png": "/ShellPrivacyFilterDemo/static/media/off.fe3fd73a.png",
     "static/media/on.png": "/ShellPrivacyFilterDemo/static/media/on.18a37a36.png"
   },
@@ -26,7 +26,7 @@
     "static/js/runtime-main.74f01554.js",
     "static/css/2.d9ad5f5c.chunk.css",
     "static/js/2.da95e9a0.chunk.js",
-    "static/css/main.b3a285a2.chunk.css",
-    "static/js/main.c8994ed1.chunk.js"
+    "static/css/main.36f06854.chunk.css",
+    "static/js/main.07a37a0f.chunk.js"
   ]
 }
