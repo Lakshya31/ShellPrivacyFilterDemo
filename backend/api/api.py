@@ -43,7 +43,7 @@ def analyze_text():
 
     #Your Input are the variables "text" and "subject"
 
-    Output = filter_model.email_ner(subject + "\n" + text) #Call Model Here
+    Output = filter_model.email_ner(text) #Call Model Here
 
     """
     Format Output Like This:
