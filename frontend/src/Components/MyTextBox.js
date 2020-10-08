@@ -98,6 +98,7 @@ export default class MyTextBox extends Component {
 
         text = text.replace(/(?:\r\n|\r|\n)/g, "<br>");
         text = text.replace(/<br> /g, "<br>&nbsp;");
+        // eslint-disable-next-line
         text = text.replace(/  /g, "&nbsp;&nbsp;");
         text = text.replace(/&nbsp; /g, "&nbsp;&nbsp;");
         // console.log(JSON.stringify(text),"Lala");
