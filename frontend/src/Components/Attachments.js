@@ -26,6 +26,9 @@ export default class Attachments extends Component {
                                 <img src={DocxIcon} alt="DocxIcon" className="DocxIcon" />
                                 <div className="AttachmentName">{attachment.file.name}</div>
                                 <img src={DelIcon} alt="DelIcon" className="DelIcon" onClick={()=>{this.props.deleteAttachment(index)}} />
+                                <div className="extraDiv">
+                                    <span className="tooltiptext">Confidential or Private</span>
+                                </div>
                             </div>
                             )
                         }

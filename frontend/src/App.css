@@ -46,20 +46,23 @@
 .App{
   height: 100vh;
   width: 100vw;
-  overflow: hidden;
+  overflow: visible;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .Particles{
-  position: absolute;
   background-image: linear-gradient( 109.8deg,  rgba(62,5,116,1) -5.2%, rgba(41,14,151,1) -5.2%, rgba(216,68,148,1) 103.3% );
   background-size: cover;
-  top: 0;
-  right: 0;
+  width : 100%;
+  height: 100%;
+  position: fixed;
   bottom: 0;
-  left: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
 }
 
 .MainApp{
@@ -69,9 +72,9 @@
   position: absolute;
   background-color: white;
   width : 50vw;
-  height : 80vh;
-  min-width: 540px;
-  min-height: 540px;
+  height : 90vh;
+  min-width: 400px;
+  min-height: 400px;
   margin : auto;
   border-radius: 10px;
   box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.4);
@@ -170,7 +173,7 @@
 }
 
 #highlighter, #highlighter:focus, #highlighter:hover{
-  background-color: white;
+  background-color: transparent;
   color:black;
   text-align: left;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -179,7 +182,21 @@
   border: none;
   padding: 2px;
   outline: none;
+  /* overflow: scroll; */
 }
+
+/* #maindiv{
+  color: black;
+  font-size: 16px;
+  padding: 2px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: lighter;
+  outline: none;
+  border: none;
+  text-align: left;
+  background-color: transparent;
+  overflow: scroll;
+} */
 
 textarea, textarea:hover, textarea:focus{
   color: black;
@@ -191,6 +208,7 @@ textarea, textarea:hover, textarea:focus{
   text-align: left;
   background-color: transparent;
   resize: none;
+  min-height: 390px;
 }
 
 .highlight{
@@ -204,10 +222,11 @@ textarea, textarea:hover, textarea:focus{
 }
 
 .highlight2{
-  background-color: rgb(255,100,100);
+  background-color: rgb(255,150,150);
+  /* border-bottom: 3px solid rgb(255,100,100); */
 }
 
-.newDiv, .newDiv:focus, .newDiv:hover{
+/* #newDiv, #newDiv:focus, #newDiv:hover{
   background-color: transparent;
   color:black;
   text-align: left;
@@ -217,7 +236,8 @@ textarea, textarea:hover, textarea:focus{
   border: none;
   padding: 2px;
   outline: none;
-}
+  overflow: auto;
+} */
 
 /* .highlight .tooltiptext {
   visibility: hidden;
@@ -280,7 +300,7 @@ textarea, textarea:hover, textarea:focus{
 .highlight2 .tooltiptext {
   visibility: hidden;
   width: 120px;
-  background-color: rgb(255,100,100);
+  background-color: rgb(255,150,150);
   color: black;
   font-weight: bold;
   text-align: center;
@@ -316,6 +336,7 @@ textarea, textarea:hover, textarea:focus{
   border-right: solid rgb(0, 114, 198) 10px;
   border-bottom: solid rgb(0, 114, 198) 10px;
   border-radius: 0px 0px 10px 10px;
+  max-height: 76px;
 }
 
 .roundit{
@@ -329,6 +350,7 @@ textarea, textarea:hover, textarea:focus{
   border-radius: 20px;
   padding: auto auto;
   width: 80px;
+  min-width: 80px;
   height: 40px;
   margin : 5px 10px 10px 20px;
 }
@@ -343,12 +365,11 @@ textarea, textarea:hover, textarea:focus{
   padding-left: 10px;
   overflow-x: auto;
   overflow-y: hidden;
-  /* max-width: 250px; */
-  white-space:nowrap;
+  white-space: nowrap;
 }
 
 .AttachmentCard{
-  display: flex;
+  display: inline-flex;
   align-items: center;
   border: 1px solid grey;
   border-radius: 5px;
@@ -357,12 +378,48 @@ textarea, textarea:hover, textarea:focus{
 }
 
 .AttachmentCardIssue{
-  display: flex;
+  display: inline-flex;
   align-items: center;
   border: 1px solid grey;
   border-radius: 5px;
-  background-color: rgb(255,100,100);
+  background-color: rgb(255,120,120);
   margin: auto 5px;
+}
+
+.extraDiv{
+  position: relative;
+}
+
+.AttachmentCardIssue .tooltiptext {
+  background-color: rgb(255,150,150);
+  color: black;
+  border: 1px solid black;
+  font-weight: bold;
+  font-size: 12PX;
+  text-align: center;
+  visibility: hidden;
+  width: 150px;
+  padding: 3px 0;
+  border-radius: 6px;
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+  margin-top: -15px;
+}
+
+.AttachmentCardIssue:hover .tooltiptext {
+  visibility: visible;
+}
+
+.AttachmentCardIssue .tooltiptext::after {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  right: 100%; /* To the left of the tooltip */
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent black transparent transparent;
 }
 
 .DocxIcon{
@@ -374,7 +431,7 @@ textarea, textarea:hover, textarea:focus{
 
 .AttachmentName{
   float: left;
-  color: blue;
+  color: rgb(0, 114, 198);
   align-items: center;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 15px;
@@ -392,4 +449,24 @@ textarea, textarea:hover, textarea:focus{
 
 .DelIcon:hover{
   cursor: pointer;
+}
+
+/* SCROLL BARS */
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  /* box-shadow: inset 0 0 5px white;  */
+  background-color: rgb(218, 217, 220);
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(0, 114, 198);
+  border-radius: 15px;
 }

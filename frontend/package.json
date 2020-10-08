@@ -10,10 +10,11 @@
     "bootstrap": "^4.5.2",
     "foundation-sites": "^6.6.3",
     "react": "^16.13.1",
-    "react-confirm-alert": "^2.6.2",
     "react-dom": "^16.13.1",
     "react-particles-js": "^3.3.0",
-    "react-scripts": "3.4.3"
+    "react-scripts": "3.4.3",
+    "react-scroll-sync": "^0.8.0",
+    "scroll-sync-react": "^1.1.7"
   },
   "scripts": {
     "start": "react-scripts start",

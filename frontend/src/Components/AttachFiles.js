@@ -5,7 +5,7 @@ import Attach from '../Images/attach.png';
 import Attachments from './Attachments';
 
 export default class AttachFiles extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
         this.state = {
             attachments: []
@@ -14,54 +14,54 @@ export default class AttachFiles extends Component {
 
     deleteAttachment = (index) => {
         var newAttachments = this.state.attachments;
-        newAttachments.splice(index,1);
-        this.setState({attachments:newAttachments});
+        newAttachments.splice(index, 1);
+        this.setState({ attachments: newAttachments });
     }
 
     onSend = () => {
-    window.location.reload();
+        window.location.reload();
     }
 
     updateAttachmentStatus = (index, resp) => {
         var updated = [];
-        if(resp === "issue"){
+        if (resp === "issue") {
             updated = this.state.attachments;
             updated[index].issue = true;
-            this.setState({attachments:updated})
+            this.setState({ attachments: updated })
         }
-        if(resp === "no issue"){
+        if (resp === "no issue") {
             updated = this.state.attachments;
             updated[index].issue = false;
-            this.setState({attachments:updated})
+            this.setState({ attachments: updated })
         }
     }
 
     sendFiles = () => {
-        this.state.attachments.forEach((attachment,index) => {
+        this.state.attachments.forEach((attachment, index) => {
             var formdata = new FormData();
             formdata.append('file', attachment.file, attachment.file.name)
-            fetch("http://localhost:3001/analyzeattachment", {
+            fetch("https://floating-beyond-60117.herokuapp.com/analyzeattachment", {
                 method: "POST",
                 body: formdata
             })
-            .then(response => response.json())
-            .then(resp => {
-                this.updateAttachmentStatus(index, resp)
-            })
+                .then(response => response.json())
+                .then(resp => {
+                    this.updateAttachmentStatus(index, resp)
+                })
         })
     }
 
     onFileSelect = (event) => {
 
-        for(var i=0; i<event.target.files.length;i=i+1){
+        for (var i = 0; i < event.target.files.length; i = i + 1) {
             var filename = event.target.files[i].name.split(".")
-            if(filename[filename.length-1].toLowerCase() === "docx"){
+            if (filename[filename.length - 1].toLowerCase() === "docx") {
                 var newfiles = this.state.attachments
                 newfiles.push({
-                    file:event.target.files[i],
-                    issue:false
+                    file: event.target.files[i],
+                    issue: false
                 })
-                this.setState({attachments:newfiles}, this.sendFiles);
+                this.setState({ attachments: newfiles }, this.sendFiles);
             }
         }
 
@@ -74,7 +74,7 @@ export default class AttachFiles extends Component {
                 <p className="roundit" onClick={this.onSend}>SEND</p>
                 <label htmlFor="files">
                     <img className="AttachmentIcon" src={Attach} alt="AttachmentIcon" />
-                    <input type="file" multiple="multiple" className="InputFile" id="files" onInput={this.onFileSelect} accept="application/vnd.openxmlformats-officedocument.wordprocessingml.document" style={{display: "none"}}/>
+                    <input type="file" multiple="multiple" className="InputFile" id="files" onInput={this.onFileSelect} accept="application/vnd.openxmlformats-officedocument.wordprocessingml.document" style={{ display: "none" }} />
                 </label>
                 <Attachments attachments={this.state.attachments} deleteAttachment={this.deleteAttachment} />
             </div>
