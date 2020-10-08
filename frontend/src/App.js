@@ -14,12 +14,12 @@ const ParticleOptions = {
   particles: {
     color: {
       // value: "#0970D4"
-      value: "#FFFFFF"
+      value: "#000000"
     },
     line_linked: {
       color: {
         // value: "#0970D4"
-        value: "#FFFFFF"
+        value: "#000000"
       }
     },
     number: {

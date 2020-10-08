@@ -16,7 +16,7 @@ export default class MyTextBox extends Component {
     }
 
     sendRequest = () => {
-        fetch("https://floating-beyond-60117.herokuapp.com/analyzetext", {
+        fetch("https://shellprivacyfilterdemo.herokuapp.com/analyzetext", {
             method: "post",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ text: this.state.text, subject: this.props.subject })
@@ -104,12 +104,21 @@ export default class MyTextBox extends Component {
     }
 
     limitLines = (event) => {
-        // console.log(event.target.style.height)
-        var limit = 15;
+        const vlimit = 15;
+        const hlimit = 50;
 
         var temp = event.target.value.replace(/\r\n/g, "\n").replace(/\r/g, "").split(/\n/g);//split lines
-        if (temp.length > limit) {
-            event.target.value = temp.slice(0, limit).join("\n");
+
+        let upper = temp.length
+        for (let i = 0; i < upper; i = i + 1) {
+            console.log("Hi")
+            if (temp[i].length > hlimit) {
+                temp.splice(i, 1, temp[i].slice(0, hlimit), temp[i].slice(hlimit))
+            }
+        }
+
+        if (temp.length > vlimit) {
+            event.target.value = temp.slice(0, vlimit).join("\n");
         }
 
         this.onTextChange(event.target)
@@ -124,7 +133,7 @@ export default class MyTextBox extends Component {
                     </ScrollSyncPane>
                     <ScrollSyncPane>
                         {/* <div contentEditable="true" id="maindiv" type="text" onInput={this.onTextChange}></div> */}
-                        <textarea type="text" rows="16" onPaste={this.pasteText} onKeyUp={this.limitLines}></textarea>
+                        <textarea type="text" rows="16" cols="72" onPaste={this.pasteText} onKeyUp={this.limitLines}></textarea>
                     </ScrollSyncPane>
                     <InteractSwitch onInteractChange={this.onInteractChange} interact={this.state.interact} />
                     {/* <ScrollSyncPane>

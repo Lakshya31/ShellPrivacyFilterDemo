@@ -40,7 +40,7 @@ export default class AttachFiles extends Component {
         this.state.attachments.forEach((attachment, index) => {
             var formdata = new FormData();
             formdata.append('file', attachment.file, attachment.file.name)
-            fetch("https://floating-beyond-60117.herokuapp.com/analyzeattachment", {
+            fetch("https://shellprivacyfilterdemo.herokuapp.com/analyzeattachment", {
                 method: "POST",
                 body: formdata
             })
