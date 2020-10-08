@@ -82,7 +82,7 @@ def analyze_attachment():
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))    #Enable this to save in attachments folder
         safety_flag = filter_model.attachment_scan(os.path.join(app.config['UPLOAD_FOLDER'], filename)) #This is the string you'll get ("issue" or "no issue")
         #data = file.read()          #This is the data you need to process my friend
-        return jsonify("Issue")     #Send Better Outputs
+        return jsonify(safety_flag)     #Send Better Outputs
 
     abort(400, description="Resource not found")
 
