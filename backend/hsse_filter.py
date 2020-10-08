@@ -52,7 +52,8 @@ class EmailFilter:
     
     def attachment_ner(self, attachment_docx):
         self.de.extract_text(attachment_docx, "text")
-        with open(os.path.join(os.path.expanduser("~"), "ShellPrivacyFilterDemo", "data", attachment_docx.split(".")[0] + "_text.txt"), "r") as file:
+        name = os.path.basename(os.path.normpath(attachment_docx))
+        with open(os.path.join(os.path.expanduser("~"), "ShellPrivacyFilterDemo", "data", name.split(".")[0] + "_text.txt"), "r") as file:
             text = file.read()
             ner_result = self.ner.test(text)
             
