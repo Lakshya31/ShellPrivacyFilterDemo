@@ -42,6 +42,7 @@ export default class MyTextBox extends Component {
         // text = text.replace(/(\n){2}/g, '\n')
         // this.setState({ text: text }, this.sendRequest);
         target.value = target.value.replace(/(<([^>]+)>)/ig, '');
+        console.log(JSON.stringify(target.value));
         this.setState({ text: target.value }, this.sendRequest);
     }
 
@@ -94,34 +95,28 @@ export default class MyTextBox extends Component {
             text = [text.slice(0, marker.indices[1] + add), close, text.slice(marker.indices[1] + add)].join('');
             add = add + close.length
         })
-        text = text.replace(/(?:\r\n|\r|\n)/g, "<br>");
 
+        text = text.replace(/(?:\r\n|\r|\n)/g, "<br>");
+        text = text.replace("<br> ", "<br>&nbsp;");
+        console.log(JSON.stringify(text),"Lala");
         return { __html: text }
     }
 
-    pasteText = (event) => {
+    pasteText = () => {
         setTimeout(this.limitLines, 1);
     }
 
-    limitLines = (event) => {
-        const vlimit = 15;
-        const hlimit = 50;
+    limitLines = () => {
+        var target = document.getElementById("mytextarea");
+        const vlimit = 13;
 
-        var temp = event.target.value.replace(/\r\n/g, "\n").replace(/\r/g, "").split(/\n/g);//split lines
-
-        let upper = temp.length
-        for (let i = 0; i < upper; i = i + 1) {
-            console.log("Hi")
-            if (temp[i].length > hlimit) {
-                temp.splice(i, 1, temp[i].slice(0, hlimit), temp[i].slice(hlimit))
-            }
-        }
+        var temp = target.value.replace(/\r\n/g, "\n").replace(/\r/g, "").split(/\n/g);//split lines
 
         if (temp.length > vlimit) {
-            event.target.value = temp.slice(0, vlimit).join("\n");
+            target.value = temp.slice(0, vlimit).join("\n");
         }
 
-        this.onTextChange(event.target)
+        this.onTextChange(target)
     }
 
     render() {
@@ -133,7 +128,7 @@ export default class MyTextBox extends Component {
                     </ScrollSyncPane>
                     <ScrollSyncPane>
                         {/* <div contentEditable="true" id="maindiv" type="text" onInput={this.onTextChange}></div> */}
-                        <textarea type="text" rows="16" cols="72" onPaste={this.pasteText} onKeyUp={this.limitLines}></textarea>
+                        <textarea id="mytextarea" type="text" rows="16" cols="72" onPaste={this.pasteText} onKeyUp={this.limitLines}></textarea>
                     </ScrollSyncPane>
                     <InteractSwitch onInteractChange={this.onInteractChange} interact={this.state.interact} />
                     {/* <ScrollSyncPane>

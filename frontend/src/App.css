@@ -71,15 +71,26 @@
   position: absolute;
   display: flex;
   flex-flow: column;
-  position: absolute;
   background-color: white;
-  width : 50vw;
-  height : 90vh;
-  min-width: 400px;
-  min-height: 400px;
+  width : 50%;
+  height : 90%;
+  min-width: 570px;
+  min-height: 606px;
   margin : auto;
   border-radius: 10px;
   box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.4);
+}
+
+@media only screen and (max-width: 580px) {
+  .MainApp{
+    left:0
+  }
+}
+
+@media only screen and (max-height: 600px) {
+  .MainApp{
+    top : 0;
+  }
 }
 
 .TopBar{
@@ -152,8 +163,7 @@
   width: 100%;
   margin: 10px;
   margin-left: 20px;
-  min-height: 390px;
-  min-width: 670px;
+  min-height: 340px;
 }
 
 .MyTextBox > * {
@@ -189,8 +199,7 @@
   padding: 2px;
   outline: none;
   /* overflow: scroll; */
-  min-height: 390px;
-  min-width: 670px;
+  min-height: 340px;
 }
 
 /* #maindiv{
@@ -216,8 +225,7 @@ textarea, textarea:hover, textarea:focus{
   text-align: left;
   background-color: transparent;
   resize: none;
-  min-height: 390px;
-  min-width: 670px;
+  min-height: 340px;
 }
 
 .highlight{
@@ -366,16 +374,26 @@ textarea, textarea:hover, textarea:focus{
   margin : 5px 10px 10px 20px;
 }
 
+.roundit:hover{
+  cursor: pointer;
+}
+
 .AttachmentIcon{
   height: 38px;
   width: 38px;
   margin: 10px 10px 10px 10px;
 }
 
+.AttachmentIcon:hover{
+  cursor: pointer;
+}
+
 .AttachmentsSection{
   padding-left: 10px;
   overflow-x: auto;
   overflow-y: hidden;
+  width: 100%;
+  display: inline-flex;
   white-space: nowrap;
 }
 
