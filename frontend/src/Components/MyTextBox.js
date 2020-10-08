@@ -42,7 +42,7 @@ export default class MyTextBox extends Component {
         // text = text.replace(/(\n){2}/g, '\n')
         // this.setState({ text: text }, this.sendRequest);
         target.value = target.value.replace(/(<([^>]+)>)/ig, '');
-        console.log(JSON.stringify(target.value));
+        // console.log(JSON.stringify(target.value));
         this.setState({ text: target.value }, this.sendRequest);
     }
 
@@ -97,8 +97,10 @@ export default class MyTextBox extends Component {
         })
 
         text = text.replace(/(?:\r\n|\r|\n)/g, "<br>");
-        text = text.replace("<br> ", "<br>&nbsp;");
-        console.log(JSON.stringify(text),"Lala");
+        text = text.replace(/<br> /g, "<br>&nbsp;");
+        text = text.replace(/  /g, "&nbsp;&nbsp;");
+        text = text.replace(/&nbsp; /g, "&nbsp;&nbsp;");
+        // console.log(JSON.stringify(text),"Lala");
         return { __html: text }
     }
 
