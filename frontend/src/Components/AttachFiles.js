@@ -48,6 +48,9 @@ export default class AttachFiles extends Component {
                 .then(resp => {
                     this.updateAttachmentStatus(index, resp)
                 })
+                .catch(error => {
+                    console.log("API Bugged");
+                })
         })
     }
 
