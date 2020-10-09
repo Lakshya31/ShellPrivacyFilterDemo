@@ -190,7 +190,7 @@
 
 #highlighter, #highlighter:focus, #highlighter:hover{
   background-color: transparent;
-  color:black;
+  color: white;
   text-align: left;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: lighter;
@@ -235,11 +235,13 @@ textarea, textarea:hover, textarea:focus{
 }
 
 .highlight1{
+  color: black;
   background-color: rgb(255,165,0);
   /* border-bottom: 3px solid rgb(255,165,0); */
 }
 
 .highlight2{
+  color: black;
   background-color: rgb(255,150,150);
   /* border-bottom: 3px solid rgb(255,100,100); */
 }
@@ -287,7 +289,7 @@ textarea, textarea:hover, textarea:focus{
 
 .highlight1 .tooltiptext {
   visibility: hidden;
-  width: 120px;
+  width: 175px;
   background-color: rgb(255,165,0);
   color: black;
   font-weight: bold;
@@ -317,7 +319,7 @@ textarea, textarea:hover, textarea:focus{
 
 .highlight2 .tooltiptext {
   visibility: hidden;
-  width: 120px;
+  width: 175px;
   background-color: rgb(255,150,150);
   color: black;
   font-weight: bold;
@@ -379,8 +381,8 @@ textarea, textarea:hover, textarea:focus{
 }
 
 .AttachmentIcon{
-  height: 38px;
-  width: 38px;
+  height: 35px;
+  width: 35px;
   margin: 10px 10px 10px 10px;
 }
 
@@ -413,6 +415,10 @@ textarea, textarea:hover, textarea:focus{
   border-radius: 5px;
   background-color: rgb(255,120,120);
   margin: auto 5px;
+}
+
+.AttachmentCardIssue:hover{
+  cursor: default;
 }
 
 .extraDiv{

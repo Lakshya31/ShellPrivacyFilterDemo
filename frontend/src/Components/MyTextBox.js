@@ -69,9 +69,11 @@ export default class MyTextBox extends Component {
     ChangeMode = () => {
         if (!this.state.interact) {
             document.getElementById("highlighter").style.zIndex = "0";
+            document.getElementById("highlighter").style.color = "white";
         }
         else {
             document.getElementById("highlighter").style.zIndex = "1";
+            document.getElementById("highlighter").style.color = "black";
         }
     }
 
@@ -83,13 +85,12 @@ export default class MyTextBox extends Component {
         this.state.data.forEach((marker) => {
             if (marker.message === "Violation of Privacy Policy") {
                 open = '<span class="highlight highlight1">';
-                close = '<span class="tooltiptext">' + marker.message + '</span></span>';
+                close = '<span class="tooltiptext">Violation of Privacy Policy</span></span>';
             }
             if (marker.message === "Breach of Confidentiality") {
                 open = '<span class="highlight highlight2">';
-                close = '<span class="tooltiptext">' + marker.message + '</span></span>';
+                close = '<span class="tooltiptext">Breach of Confidentiality</span></span>';
             }
-            close = '<span class="tooltiptext">' + marker.message + '</span></span>';
             text = [text.slice(0, marker.indices[0] + add), open, text.slice(marker.indices[0] + add)].join('');
             add = add + open.length
             text = [text.slice(0, marker.indices[1] + add), close, text.slice(marker.indices[1] + add)].join('');
@@ -97,11 +98,11 @@ export default class MyTextBox extends Component {
         })
 
         text = text.replace(/(?:\r\n|\r|\n)/g, "<br>");
-        text = text.replace(/<br> /g, "<br>&nbsp;");
-        // eslint-disable-next-line
-        text = text.replace(/  /g, "&nbsp;&nbsp;");
-        text = text.replace(/&nbsp; /g, "&nbsp;&nbsp;");
-        // console.log(JSON.stringify(text),"Lala");
+        text = text.replace(/ /g, "&nbsp;");
+        text = text.replace(/<span&nbsp;class="highlight&nbsp;highlight1">/g, '<span class="highlight highlight1">');
+        text = text.replace(/<span&nbsp;class="highlight&nbsp;highlight2">/g, '<span class="highlight highlight2">');
+        text = text.replace(/<span&nbsp;class="tooltiptext">/g, '<span class="tooltiptext">');
+        // console.log(JSON.stringify(text));
         return { __html: text }
     }
 
@@ -111,12 +112,35 @@ export default class MyTextBox extends Component {
 
     limitLines = () => {
         var target = document.getElementById("mytextarea");
-        const vlimit = 13;
+        // const vlimit = 13;
+        // const hlimit = 50;
+
+        var elmnt = document.getElementById("highlighter");
+        var vlimit = Math.floor(elmnt.offsetHeight/24)-1 ;
+        var hlimit = Math.floor(elmnt.offsetWidth/10)-1 ;
 
         var temp = target.value.replace(/\r\n/g, "\n").replace(/\r/g, "").split(/\n/g);//split lines
 
+        var upper = temp.length;
+        for(let i=0; i<upper; i++){
+            if(temp[i].length > hlimit){
+                let lastspace = hlimit;
+                for(let j=hlimit; j>0; j=j-1){
+                    if(temp[i][j] === " "){
+                        lastspace = j+1;
+                        break;
+                    }
+                }
+                temp.splice(i,1,temp[i].slice(0,lastspace), temp[i].slice(lastspace));
+                upper = upper + 1;
+            }
+        }
+
         if (temp.length > vlimit) {
             target.value = temp.slice(0, vlimit).join("\n");
+        }
+        else{
+            target.value = temp.join("\n")
         }
 
         this.onTextChange(target)
@@ -131,7 +155,7 @@ export default class MyTextBox extends Component {
                     </ScrollSyncPane>
                     <ScrollSyncPane>
                         {/* <div contentEditable="true" id="maindiv" type="text" onInput={this.onTextChange}></div> */}
-                        <textarea id="mytextarea" type="text" rows="16" cols="72" onPaste={this.pasteText} onKeyUp={this.limitLines}></textarea>
+                        <textarea id="mytextarea" type="text" rows="16" onPaste={this.pasteText} onKeyUp={this.limitLines}></textarea>
                     </ScrollSyncPane>
                     <InteractSwitch onInteractChange={this.onInteractChange} interact={this.state.interact} />
                     {/* <ScrollSyncPane>
